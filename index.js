@@ -13,6 +13,10 @@ app.get('/', (req, res) => {
 
 app.post('/transcript', async (req, res) => {
   const url = req.body.url;
+  if (!url) {
+    res.status(400).send('Missing URL in request payload')
+    return
+  }
   const videoId = url.split('watch?v=')[1];
 
   try {
